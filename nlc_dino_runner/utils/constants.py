@@ -1,6 +1,9 @@
 import pygame
 import os
 
+TITTLE = "Chrome Dino Runner"
+
+FPS = 30
 # Global Constants
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
@@ -65,5 +68,7 @@ HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
+
+ICON = pygame.image.load(os.path.join(IMG_DIR, 'DinoWallpaper.png'))
 
 DEFAULT_TYPE = "default"
