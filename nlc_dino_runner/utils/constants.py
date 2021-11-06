@@ -1,9 +1,11 @@
 import pygame
 import os
 
+
 TITTLE = "Chrome Dino Runner"
 
 FPS = 30
+
 # Global Constants
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
