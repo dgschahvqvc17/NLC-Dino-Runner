@@ -2,6 +2,7 @@ import pygame
 
 
 from nlc_dino_runner.components.obstacles.cactus import Cactus
+from nlc_dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from nlc_dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH,  TITTLE,  FPS
 from nlc_dino_runner.components.dinosaur import Dinosaur
 
@@ -18,7 +19,7 @@ class Game:
         self.x_pos_bg = 0
         self.y_pos_bg = 380
         self.player = Dinosaur()
-        self.obstacle = Cactus()
+        self.obstacle = ObstacleManager()
 
     def run(self):
         self.playing = True
@@ -36,9 +37,7 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
-        self.obstacle. update()
-        if self.player.dino_rect.colliderect(self.obstacle.rect):
-            self.playing = False
+        self.obstacle.update(self)
 
     def draw(self):
         self.clock.tick(FPS)
