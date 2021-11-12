@@ -11,9 +11,10 @@ class Obstacle(Sprite):
         self.rect.x = SCREEN_WIDTH
 
     def update(self, obstacles):
-        self.rect.x -= 20
+        self.rect.x -= 20 #game_speed
         if self.rect.x < -self.rect.width:
             obstacles.pop()
 
     def draw(self, screen):
         screen.blit(self.image[self.index], self.rect)
+
