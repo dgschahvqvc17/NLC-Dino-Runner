@@ -14,7 +14,7 @@ class LifeManager:
             game.playing = False
 
     def draw(self, screen):
-        self.screen=screen
+        self.screen = screen
 
         #for life in range(0, self.life):
 
