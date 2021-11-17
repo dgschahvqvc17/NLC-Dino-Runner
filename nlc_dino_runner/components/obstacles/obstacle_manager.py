@@ -1,6 +1,6 @@
 import pygame.time
 
-from nlc_dino_runner.utils.constants import SMALL_CACTUS
+from nlc_dino_runner.utils.constants import SMALL_CACTUS, numbers_life
 from nlc_dino_runner.components.obstacles.cactus import Cactus
 
 
@@ -18,6 +18,9 @@ class ObstacleManager:
             if game.player.dino_rect.colliderect(obstacle.rect):
                 if game.player.shield:
                     self.obstacles.remove(obstacle)
+                elif game.lifes > 0:
+                    self.obstacles.remove(obstacle)
+                    game.lifes -= 1
                 else:
                     pygame.time.delay(500)
                     game.playing = False

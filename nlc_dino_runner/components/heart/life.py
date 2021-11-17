@@ -14,6 +14,10 @@ class Life(Sprite):
 
         #if self.rect.x < -self.rect.width:
             #powerups.pop()
+    def coordinates(self, lives):
+        self.rect.x += 25
+        if self.rect.x == 25+25*lives:
+            self.rect.x = 25
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)

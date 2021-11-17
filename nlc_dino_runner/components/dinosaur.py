@@ -104,3 +104,5 @@ class Dinosaur(Sprite):
     def update_type_to_default(self, current_type):
         if self.type == current_type:
             self.type = DEFAULT_TYPE
+
+

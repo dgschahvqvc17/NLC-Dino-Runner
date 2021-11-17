@@ -1,6 +1,10 @@
+from nlc_dino_runner.utils.constants import numbers_life
+from nlc_dino_runner.components.heart.life import Life
+
+
 class LifeManager:
     def __init__(self):
-        self.life = 3
+        self.life = numbers_life
 
     def update(self, game):
         if self.life > 0:
@@ -10,9 +14,11 @@ class LifeManager:
             game.playing = False
 
     def draw(self, screen):
-        for life in range(0, self.life):
-            
-            life = Life()
+        self.screen=screen
+
+        #for life in range(0, self.life):
+
+            #life = Life()
 
     def reset_obstacles(self):
         self.life
