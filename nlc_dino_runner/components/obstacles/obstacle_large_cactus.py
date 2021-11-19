@@ -1,9 +1,8 @@
+from nlc_dino_runner.utils.constants import SCREEN_WIDTH
 from pygame.sprite import Sprite
 
-from nlc_dino_runner.utils.constants import SCREEN_WIDTH
 
-
-class Bird(Sprite):
+class ObstacleLargeCactus(Sprite):
 
     def __init__(self, image, type):
         self.image = image
