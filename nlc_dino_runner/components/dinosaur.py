@@ -32,6 +32,10 @@ class Dinosaur(Sprite):
         self.dino_duck = False
         self.dino_jump = False
         self.jum_vel = self.JUMP_VEL
+        self.hammer = False
+        self.hammer_time_up = 0
+        self.hammer_speed = 15
+        self.throw_hammer = False
 
     def update(self, user_input):
         if self.dino_run:
@@ -54,7 +58,7 @@ class Dinosaur(Sprite):
             self.dino_duck = False
             self.dino_jump = False
 
-        if self.step_index >= 10:
+        if self.step_index == 10:
             self.step_index = 0
 
     def draw(self, screen):
@@ -104,3 +108,5 @@ class Dinosaur(Sprite):
     def update_type_to_default(self, current_type):
         if self.type == current_type:
             self.type = DEFAULT_TYPE
+
+    

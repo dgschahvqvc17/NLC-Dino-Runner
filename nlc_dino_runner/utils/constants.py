@@ -11,7 +11,7 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
-numbers_life = 3
+
 
 # Assets Constants
 RUNNING = [
@@ -74,6 +74,13 @@ HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 ICON = pygame.image.load(os.path.join(IMG_DIR, 'DinoWallpaper.png'))
 
+LIFES = 5
+
+HAMMERS = 3
+
+HAMMER_POWER_UP = 10
+
+HEART_COUNT = 4
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
 HAMMER_TYPE = "hammer"

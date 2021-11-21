@@ -1,19 +1,13 @@
 import pygame
 
-from nlc_dino_runner.components import dinosaur
-
-from nlc_dino_runner.components.heart.life import Life
-from nlc_dino_runner.components.heart.life_manager import LifeManager
-from nlc_dino_runner.components.obstacles.obstacle_large_cactus_manager import LargeObstacleManager
+from nlc_dino_runner.components.power_ups.lifes import Life
 from nlc_dino_runner.components.ornaments.cloud import Cloud
 from nlc_dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from nlc_dino_runner.utils import text_utils
 from nlc_dino_runner.components.obstacles.obstacle_manager import ObstacleManager
-from nlc_dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITTLE, FPS, numbers_life
+from nlc_dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITTLE, FPS, CLOUD
 from nlc_dino_runner.components.dinosaur import Dinosaur
-from nlc_dino_runner.components.power_ups.hammer.hammer import Hammer
-from nlc_dino_runner.components.power_ups.hammer.hammer_manager import HammerManager
-from nlc_dino_runner.components.obstacles.obstacle_bird_manager import ObstacleBirdManager
+
 
 class Game:
     def __init__(self):
@@ -21,30 +15,24 @@ class Game:
         pygame.display.set_caption(TITTLE)
         pygame.display.set_icon(ICON)
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        self.x_pos_bg = 0
+        self.y_pos_bg = 380
         self.clock = pygame.time.Clock()
         self.playing = False
         self.game_speed = 20
         self.cloud = Cloud()
-        self.x_pos_bg = 0
-        self.y_pos_bg = 380
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.power_up_manager = PowerUpManager()
-        self.obstacle_bird_manager = ObstacleBirdManager()
-        self.obstacle_large_cactus_manager = LargeObstacleManager()
-        self.hammer = Hammer()
-        self.hammer_manager = HammerManager()
-        #self.dino_bird_manager = DinoBirdManager()
-        self.life = Life()
-        self.life_manager = LifeManager()
         self.points = 0
         self.running = True
         self.death_count = 0
-        self.lifes = numbers_life
+        self.hearth = Life()
+        self.print_number_lifes = 5
 
     def score(self):
         self.points += 1
-        if self.points % 100 == 0:
+        if self.points % 30 == 0:
             self.game_speed += 1
         score_element, score_element_rec = text_utils.get_score_element(self.points)
         self.screen.blit(score_element, score_element_rec)
@@ -100,7 +88,6 @@ class Game:
         while self.running:
             if not self.playing:
                 self.show_menu()
-                self.lifes = numbers_life
 
     def events(self):
         for event in pygame.event.get():
@@ -111,17 +98,8 @@ class Game:
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
         self.obstacle_manager.update(self)
-        self.hammer_manager.update(self.points, self.game_speed, self.player)
-        self.power_up_manager.update(self.points, self.game_speed, self.player)
-        self.obstacle_bird_manager.update(self)
-        self.obstacle_large_cactus_manager.update(self)
+        self.power_up_manager.update(self.points, self.game_speed, self.player, user_input)
         self.cloud.update(self. game_speed)
-        for x in range(0, self.lifes):
-            self.life.draw(self.screen)
-            self.life.coordinates(self.lifes)
-        self.score()
-        pygame.display.update()
-        pygame.display.flip()
 
     def draw(self):
         self.clock.tick(FPS)
@@ -129,12 +107,12 @@ class Game:
         self.draw_background()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
-        self.hammer_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
-        self.obstacle_bird_manager.draw(self.screen)
-        self.obstacle_large_cactus_manager.draw(self.screen)
-        self.life.draw(self.screen)
+        self.score()
+        self.hearth.draw(self.screen)
         self.cloud.draw(self.screen)
+        pygame.display.update()
+        pygame.display.flip()
 
     def draw_background(self):
         image_with = BG.get_width()

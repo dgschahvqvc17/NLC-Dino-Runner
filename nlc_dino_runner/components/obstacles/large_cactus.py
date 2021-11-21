@@ -1,10 +1,11 @@
 import random
+from nlc_dino_runner.components.obstacles.obstacle import Obstacle
+from nlc_dino_runner.utils.constants import LARGE_CACTUS
 
-from nlc_dino_runner.components.obstacles.obstacle_large_cactus import ObstacleLargeCactus
 
-
-class LargeCactus(ObstacleLargeCactus):
+class LargeCactus(Obstacle):
     def __init__(self, image):
         self.index = random.randint(0, 2)
+        self.image_cactus = LARGE_CACTUS[0]
         super().__init__(image, self.index)
-        self.rect.y = 310
+        self.rect.y = 300
